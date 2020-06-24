@@ -3,6 +3,7 @@ import React from 'react';
 class App extends React.Component {
 
   pigLatin = (english) => {
+
     let translation = english.split(' ').map(word =>{
       word = word.substring(1,word.length) + word.charAt(0) + "ay"
       return word
