@@ -6,7 +6,16 @@ class App extends React.Component {
     // https://edstem.org/courses/4230/challenges/15985
     // logic for translating english to pig latin
     // return something
-    return "ishay iglay"
+    if(english ===""){
+      return ""
+    }
+    let newArr = [];
+    let phraseArr = english.split(" ")
+    phraseArr.forEach((word)=>{
+      let newWord = word.substring(1,word.length)+word.charAt(0)+"ay"
+      newArr.push(newWord);
+    })
+    return newArr.join(" ")
   }
 
   handleSubmit = (event) => {
