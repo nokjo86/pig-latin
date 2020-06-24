@@ -3,27 +3,32 @@ import React from 'react';
 class App extends React.Component {
 
   pigLatin = (english) => {
-    // https://edstem.org/courses/4230/challenges/15985
-    // logic for translating english to pig latin
-    // return something
-    return "ishay iglay"
+    let translation = english.split(' ').map(word =>{
+      word = word.substring(1,word.length) + word.charAt(0) + "ay"
+      return word
+    })
+    return translation.join(" ")
+
   }
 
   handleSubmit = (event) => {
-    event.preventDefault()
-    const english = event.target[0].value
-    const result = this.pigLatin(english)
+    const english = event.target.value
+    let result = this.pigLatin(english)
+    if(document.getElementById('pig').value===""){
+      result=""
+      console.log("NOOOOOOOOO")
+    }
     this.setState({ pigLatin: result })
   }
 
   render() {
     const pigLatin = this.state?.pigLatin
+
     return (
       <div className="container">
-        <h1>Convert english to pig latin! 🐷</h1>
+        <h1>Convert english to pig latin!</h1>
         <form onSubmit={this.handleSubmit} >
-          <textarea name="pig" id="pig"></textarea>
-          <input type="submit" value="Convert"/>
+          <textarea onKeyDown={this.handleSubmit} name="pig" id="pig"></textarea>
         </form>
         <h1>Output</h1>
         <div className="output">
